@@ -4,33 +4,33 @@
 	Clone the repository onto your local machine:
 	git clone git@github.com:xralphlauren/Chat_drf.git
 
-#Create a virtual environment and install the required dependencies:
+# Создайте виртуальную среду и установите необходимые зависимости:
 	python3 -m venv venv
 	source venv/bin/activate
 	pip install -r requirements.txt
 
-# You can use the already created database or delete the old one and create your own.
-If you choose to create your database:
+# Вы можете использовать уже созданную базу данных или удалить старую и создать свою.
+Если вы решили создать свою базу данных:
 	./manage.py makemigrations
 	./manage.py migrate
 
-# Run the development server:
+# Запустите сервер разработки:
 	./manage.py runserver
 
-# All requests to the server require created users. There are already 5 users in my database, if you have created your database, please create some users
-#First create an admin account:
+# Все запросы к серверу требуют созданных пользователей. В моей базе данных уже есть 5 пользователей, если вы создали свою базу данных, создайте несколько пользователей.
+# Сначала создайте учетную запись администратора:
 	./manage.py createsuperuser
 
-# Next, go to the admin panel, use your newly created account
+# Далее заходим в админ панель, используем только что созданный аккаунт
 	http://127.0.0.1:8000/admin
-# Sample requests for Chat_App
-	before making requests to the server. You need to get a jwt token. To do this, go do the following:
-	go to url: http://127.0.0.1:8000/api/token/
-	Enter your login/password
-	Copy access token
+# Примеры запросов для Chat_App
+	перед выполнением запросов к серверу. Вам нужно получить токен jwt. Для этого выполните следующие действия:
+	http://127.0.0.1:8000/account/register/
+	
 
-# Further in your requests, you need to take the following value in the header: {'Authorization': 'Bearer your_token'}
-	Creating or deleting threads (Post/Delete)
+# Далее в ваших запросах нужно принимать в шапке следующее значение: {'Authorization': 'Bearer your_token'}
+	Создание или удаление тем (Post/Delete)
+	
 	http://127.0.0.1:8000/chat/api/create_delete_thread/1/2
 	http://127.0.0.1:8000/chat/api/create_delete_thread/1/3
 	http://127.0.0.1:8000/chat/api/create_delete_thread/1/4
@@ -40,7 +40,7 @@ If you choose to create your database:
 	http://127.0.0.1:8000/chat/api/create_delete_thread/5/3
 	http://127.0.0.1:8000/chat/api/create_delete_thread/5/4
 
-	Getting a list of threads for a user (with the latest message)
+	Получение списка тем для пользователя (с последним сообщением)
 	http://127.0.0.1:8000/chat/api/get_threads/1
 	http://127.0.0.1:8000/chat/api/get_threads/2
 	http://127.0.0.1:8000/chat/api/get_threads/3
@@ -48,19 +48,17 @@ If you choose to create your database:
 	http://127.0.0.1:8000/chat/api/get_threads/5
 
 
-# Get a list of messages for thread or create a new one (Post/Get)
-	If you want to create messages, you must also specify the sender ID and message text in the request body.
-	Example: {"sender": 2, "message_text": "some random Text 555"}
+# Получить список сообщений для треда или создать новый (Post/Get)
+	Если вы хотите создавать сообщения, вы также должны указать идентификатор отправителя и текст сообщения в теле запроса. 53 Пример: {"sender": 2, "message_text": "какой-то случайный текст 555"}
 	http://127.0.0.1:8000/chat/api/get_create_message/1
 	http://127.0.0.1:8000/chat/api/get_create_message/2
 	http://127.0.0.1:8000/chat/api/get_create_message/3
 
-# Change the status of a message or messages to is_read - True
-	Specify a list with message ID in the request body. Request body example, for messages with id 5,6,7 {"message_id": [5,6,7]}
+# Изменить статус сообщения или сообщений на is_read — True 58 Укажите список с идентификатором сообщения в теле запроса. Пример тела запроса для сообщений с идентификатором 5,6,7 {"message_id": [5,6,7]}
 	http://127.0.0.1:8000/api/set_message_status
 
 
-# Getting the number of unread messages per user
+# Получение количества непрочитанных сообщений на пользователя
 	http://127.0.0.1:8000/chat/api/count_unread_message/1
 	http://127.0.0.1:8000/chat/api/count_unread_message/2
 	http://127.0.0.1:8000/chat/api/count_unread_message/3
