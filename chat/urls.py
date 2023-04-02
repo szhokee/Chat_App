@@ -18,3 +18,4 @@ urlpatterns = [
 # api/get_create_message/<int:thread_id> - получение и создание сообщений в чате с идентификатором thread_id
 # api/set_message_status - изменение статуса сообщения в чате
 # api/count_unread_message/<int:user_id> - получение количества непрочитанных сообщений пользователя с идентификатором user_id
+#
