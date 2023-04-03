@@ -2,6 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from account.tasks import send_activation_code, send_reset_password_code
 
+from rest_framework import serializers
+from account.models import PhoneNumberVerification
 
 User = get_user_model()
 
@@ -73,12 +75,6 @@ class ForgotPasswordCompleteSerializer(serializers.Serializer):
         user.set_password(password)
         user.activation_code = ''
         user.save(update_fields=['password', 'activation_code'])
-
-
-
-
-from rest_framework import serializers
-from account.models import PhoneNumberVerification
 
 
 class SendPhoneNumberVerificationSerializer(serializers.Serializer):

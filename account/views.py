@@ -3,6 +3,11 @@ from account.serializers import RegisterSerializer, ForgotPasswordSerializer,For
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import PhoneNumberVerification
+from account.serializers import SendPhoneNumberVerificationSerializer, VerifyPhoneNumberSerializer
+
 User = get_user_model()
 
 class RegisterAPIView(APIView):
@@ -39,20 +44,6 @@ class ForgotPasswordCompleteAPIView(APIView):
         serializer.set_new_password()
         return Response('Пароль успешно изменен')
 
-
-
-
-
-
-
-from django.contrib.auth import get_user_model
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from .models import PhoneNumberVerification
-from account.serializers import SendPhoneNumberVerificationSerializer, VerifyPhoneNumberSerializer
-
-User = get_user_model()
 
 class SendPhoneNumberVerificationView(APIView):
     serializer_class = SendPhoneNumberVerificationSerializer

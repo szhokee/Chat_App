@@ -3,7 +3,11 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
 
+from django.db import models
+from django.utils import timezone
 class UserManager(BaseUserManager):
+
+
     use_in_migrations = True
 
     def _create_user(self, email, password, **extra_fields):
@@ -51,15 +55,7 @@ class CustomUser(AbstractUser):
         import uuid
         code = str(uuid.uuid4())
         self.activation_code = code
-
-
-
-
-
-
-from django.db import models
-from django.utils import timezone
-
+        
 
 class PhoneNumberVerification(models.Model):
     phone_number = models.CharField(max_length=20)

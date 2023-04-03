@@ -31,7 +31,7 @@ class CreateDeleteThreads(APIView):
 
             serializer = self.serializer_class(thread)
             return Response({
-                'results': 'Thread successfully created',
+                'results': 'Thread successfully created',                            
                 'data': serializer.data
             }, status=status.HTTP_200_OK)
 
